@@ -53,6 +53,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(656, 539)
+        MainWindow.setFixedSize(656, 539)
+  
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.choose = QtWidgets.QPushButton(self.centralwidget)
@@ -136,7 +138,7 @@ class Ui_MainWindow(object):
             self.image_white, self.image_black = sc.scan_image(image = self.cv_image)
             print("ctrl + V")
             self.update()
-        print("ctrl + V без фото")
+        else: print("ctrl + V без фото")
     def alpha_slider_changed(self):
         self.factor_alpha = self.alpha_slider.value() / 30.0
         print(f"alpha: {self.factor_alpha}")
@@ -147,7 +149,7 @@ class Ui_MainWindow(object):
         self.update()
 
     def beta_slider_changed(self):
-        self.factor_beta = self.beta_slider.value() / 30.0
+        self.factor_beta = self.beta_slider.value() / 10.0
         print(f"beta: {self.factor_beta}")
         if self.image_path is not None:
             self.image_white, self.image_black = sc.scan_image(f"{self.image_path}", self.factor_alpha, self.factor_beta)
