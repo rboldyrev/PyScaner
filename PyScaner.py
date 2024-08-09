@@ -4,13 +4,21 @@ import cv2
 import numpy as np
 import OpenCV_helper as sc
 
-
 class ScalableGraphicsView(QtWidgets.QGraphicsView):
     def __init__(self, *args, **kwargs):
         super(ScalableGraphicsView, self).__init__(*args, **kwargs)
         self.setRenderHint(QtGui.QPainter.Antialiasing, True)
         self.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
         
+        
+        # Устанавливаем серый цвет фона
+        self.setBackgroundBrush(QtGui.QBrush(QtGui.QColor(192, 192, 192)))
+
+        # Создаем сцену и устанавливаем ее для GraphicsView
+        self.scene = QtWidgets.QGraphicsScene(self)
+        self.setScene(self.scene)
+
+
         self.is_dragging = False  # Флаг для отслеживания перетаскивания
         self.last_mouse_pos = QtCore.QPoint()  # Последняя позиция мыши
 
